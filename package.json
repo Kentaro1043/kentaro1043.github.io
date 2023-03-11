@@ -4,5 +4,9 @@
   "repository": "https://github.com/Kentaro1043/kentaro1043.github.io.git",
   "author": "Kentaro1043",
   "license": "The Unlicense",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "stylelint": "^15.2.0",
+    "stylelint-config-standard": "^30.0.1"
+  }
 }
