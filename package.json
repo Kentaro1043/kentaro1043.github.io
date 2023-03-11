@@ -1,0 +1,14 @@
+{
+  "name": "kentaro1043.github.io",
+  "description": "Kentaro's website",
+  "repository": "https://github.com/Kentaro1043/kentaro1043.github.io.git",
+  "author": "Kentaro1043",
+  "license": "The Unlicense",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^8.36.0",
+    "prettier": "2.8.4",
+    "stylelint": "^15.2.0",
+    "stylelint-config-standard": "^30.0.1"
+  }
+}
