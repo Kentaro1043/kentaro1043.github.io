@@ -1,9 +1,9 @@
-#career-list {
+.career-list {
 	width: 500px;
 }
 
 @media screen and (max-width: 768px) {
-	#career-list {
+	.career-list {
 		width: 100%;
 	}
 }
