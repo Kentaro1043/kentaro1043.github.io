@@ -1,12 +1,141 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>けんたろうのWebサイト</title>
-</head>
-<body>
-	<p>Hello, world!</p>
-</body>
+<html lang="ja" dir="ltr">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, viewport-fit=cover"
+		/>
+
+		<title>自己紹介｜けんたろうのサイト</title>
+		<meta name="description" content="けんたろうの自己紹介ページ" />
+
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
+		<link rel="apple-touch-icon" href="/img/apple-icon.png" />
+
+		<link rel="canonical" href="https://www.kentaro1043.com" />
+
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+			integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+
+		<link rel="stylesheet" href="./css/index.css" />
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-sm navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="./index.html"
+					>けんたろうのサイト</a
+				>
+				<!-- リンクを追加する場合コメント解除
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div
+					class="collapse navbar-collapse"
+					id="navbarSupportedContent"
+				>
+					<li class="nav-item">
+          				<a class="nav-link" href="#">リンクはここに</a>
+        			</li>
+				</div>
+				-->
+			</div>
+		</nav>
+
+		<main class="mx-3 my-3">
+			<h1>自己紹介</h1>
+			<h2>基本情報</h2>
+			<table class="table table-striped table-bordered w-auto">
+				<tbody>
+					<tr>
+						<th scope="row">名前</th>
+						<td>けんたろう</td>
+					</tr>
+					<tr>
+						<th scope="row">年齢</th>
+						<td>17歳</td>
+					</tr>
+					<tr>
+						<th scope="row">誕生日</th>
+						<td>2005年12月1日</td>
+					</tr>
+					<tr>
+						<th scope="row">学年</th>
+						<td>高校2年生</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h2>リンク</h2>
+			<div class="mb-2">
+				<a href="https://twitter.com/Kentaro1043"
+					><img
+						alt="Twitter Follow"
+						src="https://img.shields.io/twitter/follow/Kentaro1043?style=social"
+				/></a>
+				<a href="https://github.com/Kentaro1043"
+					><img
+						alt="GitHub followers"
+						src="https://img.shields.io/github/followers/Kentaro1043?style=social"
+				/></a>
+				<a href="https://atcoder.jp/users/Kentaro1043?contestType=algo"
+					><img
+						src="https://badgen.org/img/atcoder/Kentaro1043/rating/algorithm?style=social"
+						alt="Rating"
+				/></a>
+			</div>
+
+			<h2>資格・経歴</h2>
+			<h3>情報処理技術者試験</h3>
+			<ul class="list-group career-list">
+				<li class="list-group-item">基本情報技術者試験合格</li>
+				<li class="list-group-item">応用情報技術者試験合格</li>
+				<li class="list-group-item">
+					データベーススペシャリスト試験合格
+				</li>
+			</ul>
+			<br />
+			<h3>日本情報オリンピック（JOI）</h3>
+			<ul class="list-group career-list">
+				<li class="list-group-item">
+					第21回日本情報オリンピック（JOI 2021/2022）2次予選進出
+				</li>
+				<li class="list-group-item">
+					第22回日本情報オリンピック（JOI 2022/2023）本選進出
+				</li>
+			</ul>
+			<br />
+			<h3>その他</h3>
+			<ul class="list-group career-list">
+				<li class="list-group-item">
+					2023年度情報科学の達人プログラム採択（4期生）
+				</li>
+				<li class="list-group-item">英検（実用英語技能検定）2級</li>
+				<li class="list-group-item">漢検（日本漢字能力検定）準2級</li>
+			</ul>
+		</main>
+
+		<footer class="ms-3">©2023 Kentaro</footer>
+
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+			integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+	</body>
 </html>
