@@ -10,12 +10,51 @@
 		<title>自己紹介｜けんたろうのサイト</title>
 		<meta name="description" content="けんたろうの自己紹介ページ" />
 
+		<!-- アイコン -->
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<link rel="apple-touch-icon" href="/img/apple-icon.png" />
 
-		<link rel="canonical" href="https://www.kentaro1043.com" />
+		<!-- Microsoft Tiles -->
+		<meta name="msapplication-config" content="browserconfig.xml" />
 
+		<!-- Google検索の重複回避 -->
+		<link rel="canonical" href="https://kentaro1043.com" />
+
+		<!-- ランディングページ -->
+		<link
+			rel="alternate"
+			href="https://kentaro1043.com"
+			hreflang="x-default"
+		/>
+
+		<!-- Facebook Open Graph -->
+		<meta property="og:url" content="https://kentaro1043.com" />
+		<meta property="og:title" content="自己紹介｜けんたろうのサイト" />
+		<meta property="og:description" content="けんたろうの自己紹介ページ" />
+		<meta
+			property="og:image"
+			content="https://kentaro1043.com/img/opengraph-image.png"
+		/>
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="ja_JP" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@Kentaro1043" />
+		<meta name="twitter:creator" content="@Kentaro1043" />
+		<meta name="twitter:url" content="https://kentaro1043.com" />
+		<meta name="twitter:title" content="自己紹介｜けんたろうのサイト" />
+		<meta name="twitter:description" content="けんたろうの自己紹介ページ" />
+		<meta
+			name="twitter:image"
+			content="https://kentaro1043.com/img/icon.png"
+		/>
+
+		<!-- Bootstrap CSS -->
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
@@ -24,13 +63,20 @@
 			referrerpolicy="no-referrer"
 		/>
 
+		<!-- CSS -->
 		<link rel="stylesheet" href="./css/index.css" />
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-sm navbar-light bg-light">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="./index.html"
-					>けんたろうのサイト</a
+					><img
+						src="./img/icon.png"
+						alt="けんたろうのアイコン"
+						class="d-inline-block align-text-top"
+						width="28"
+						height="28"
+					/>けんたろうのサイト</a
 				>
 				<!-- リンクを追加する場合コメント解除
 				<button
@@ -78,17 +124,26 @@
 
 			<h2>リンク</h2>
 			<div class="mb-2">
-				<a href="https://twitter.com/Kentaro1043"
+				<a
+					href="https://twitter.com/Kentaro1043"
+					target="_blank"
+					rel="noopener noreferrer"
 					><img
 						alt="Twitter Follow"
 						src="https://img.shields.io/twitter/follow/Kentaro1043?style=social"
 				/></a>
-				<a href="https://github.com/Kentaro1043"
+				<a
+					href="https://github.com/Kentaro1043"
+					target="_blank"
+					rel="noopener noreferrer"
 					><img
 						alt="GitHub followers"
 						src="https://img.shields.io/github/followers/Kentaro1043?style=social"
 				/></a>
-				<a href="https://atcoder.jp/users/Kentaro1043?contestType=algo"
+				<a
+					href="https://atcoder.jp/users/Kentaro1043?contestType=algo"
+					target="_blank"
+					rel="noopener noreferrer"
 					><img
 						src="https://badgen.org/img/atcoder/Kentaro1043/rating/algorithm?style=social"
 						alt="Rating"
@@ -127,6 +182,7 @@
 
 		<footer class="ms-3">©2023 Kentaro</footer>
 
+		<!-- Bootstrap JavaScript -->
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
 			integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
