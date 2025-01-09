@@ -1,0 +1,9 @@
+tabWidth: 4
+useTabs: true
+trailingComma: none
+overrides:
+  - files:
+      - "*.yaml"
+    options:
+      tabWidth: 2
+      useTabs: false
