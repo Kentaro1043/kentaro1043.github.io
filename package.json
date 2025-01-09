@@ -1,13 +1,13 @@
 {
-  "name": " ",
+  "name": "Kentaro's website",
   "version": "0.0.1",
   "description": "",
   "private": true,
   "keywords": [
     ""
   ],
-  "license": "",
-  "author": "",
+  "license": "MIT",
+  "author": "Kentaro1043",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --open --config webpack.config.dev.js",
