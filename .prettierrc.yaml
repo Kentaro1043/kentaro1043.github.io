@@ -7,3 +7,8 @@ overrides:
     options:
       tabWidth: 2
       useTabs: false
+  - files:
+      - "*.html"
+    options:
+      tabWidth: 2
+      useTabs: false
