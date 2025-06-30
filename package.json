@@ -25,6 +25,7 @@
 		"tailwindcss": "^4.1.11"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^2.0.6",
 		"daisyui": "^5.0.43"
 	}
 }
