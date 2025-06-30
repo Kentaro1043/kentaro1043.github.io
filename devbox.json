@@ -6,7 +6,8 @@
 		"scripts": {
 			"check": "bunx --bun biome check",
 			"format": "bunx --bun biome format --fix",
-			"lint": "bunx --bun biome lint --fix"
+			"lint": "bunx --bun biome lint --fix",
+			"dev": "bun run dev"
 		}
 	}
 }
