@@ -1,6 +1,4 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-	theme:
-		light --nord,
-		dark --dracula;
+  themes: nord --default, dracula --prefersdark;
 }
