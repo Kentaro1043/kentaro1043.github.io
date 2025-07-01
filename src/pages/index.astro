@@ -10,10 +10,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="flex min-h-screen flex-col">
     <Header />
     <main
-      class="flex-1 px-24 py-10 flex flex-col gap-4 md:px-48 md:py-16 lg:px-96 lg:py-20"
+      class="flex flex-1 flex-col gap-4 px-24 py-10 md:px-48 md:py-16 lg:px-96 lg:py-20"
     >
       <div class="avatar flex justify-center">
         <div class="w-32 rounded">
@@ -21,7 +21,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
         </div>
       </div>
       <div>
-        <h1 class="text-4xl text-center font-bold">けんたろう</h1>
+        <h1 class="text-center text-4xl font-bold">けんたろう</h1>
         <p class="text-center text-gray-400">@Kentaro1043</p>
       </div>
     </main>
