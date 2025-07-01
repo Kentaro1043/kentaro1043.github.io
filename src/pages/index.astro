@@ -13,16 +13,20 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
   <body class="flex min-h-screen flex-col">
     <Header />
     <main
-      class="flex flex-1 flex-col gap-4 px-24 py-10 md:px-48 md:py-16 lg:px-96 lg:py-20"
+      class="flex flex-1 flex-col gap-4 px-12 py-6 md:px-48 md:py-16 lg:px-96 lg:py-20"
     >
-      <div class="avatar flex justify-center">
-        <div class="w-32 rounded">
-          <img src="/icon.webp" alt="けんたろうのアイコン" />
+      <div class="hero rounded bg-base-200">
+        <div class="hero-content flex-col lg:flex-row">
+          <div class="avatar">
+            <div class="w-24 rounded-lg">
+              <img src="/icon.webp" alt="けんたろうのアイコン" />
+            </div>
+          </div>
+          <div>
+            <h1 class="text-3xl font-bold">けんたろう</h1>
+            <p class="text-center text-gray-400">@Kentaro1043</p>
+          </div>
         </div>
-      </div>
-      <div>
-        <h1 class="text-center text-4xl font-bold">けんたろう</h1>
-        <p class="text-center text-gray-400">@Kentaro1043</p>
       </div>
     </main>
     <Footer />
