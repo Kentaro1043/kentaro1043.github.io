@@ -1,2 +1,2 @@
-export const SITE_TITLE = "けんたろうのサイト";
-export const SITE_DESCRIPTION = "けんたろうのWebサイト";
+export const SITE_TITLE = "けんたろうのホームページ";
+export const SITE_DESCRIPTION = "けんたろうのポートフォリオ、ブログサイト";
