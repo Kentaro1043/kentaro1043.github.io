@@ -1,8 +1,32 @@
-# Created by https://www.toptal.com/developers/gitignore/api/node,webstorm,macos,visualstudiocode,dotenv
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,webstorm,macos,visualstudiocode,dotenv
+# Created by https://www.toptal.com/developers/gitignore/api/node,astro,linux,macos,react,direnv,dotenv,windows,visualstudiocode,webstorm+all
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,astro,linux,macos,react,direnv,dotenv,windows,visualstudiocode,webstorm+all
+
+### Astro ###
+# Gitignore template for Astro projects
+# Ignore content collection generated files
+.astro
+
+### direnv ###
+.direnv
+.envrc
 
 ### dotenv ###
 .env
+
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
 
 ### macOS ###
 # General
@@ -176,6 +200,19 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+### react ###
+.DS_*
+**/*.backup.*
+**/*.back.*
+
+node_modules
+
+*.sublime*
+
+psd
+thumb
+sketch
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -195,7 +232,7 @@ dist
 .history
 .ionide
 
-### WebStorm ###
+### WebStorm+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
@@ -274,38 +311,39 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-### WebStorm Patch ###
-# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
+### WebStorm+all Patch ###
+# Ignore everything but code style settings and run configurations
+# that are supposed to be shared within teams.
 
-# *.iml
-# modules.xml
-# .idea/misc.xml
-# *.ipr
+.idea/*
 
-# Sonarlint plugin
-# https://plugins.jetbrains.com/plugin/7973-sonarlint
-.idea/**/sonarlint/
+!.idea/codeStyles
+!.idea/runConfigurations
 
-# SonarQube Plugin
-# https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin
-.idea/**/sonarIssues.xml
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
 
-# Markdown Navigator plugin
-# https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced
-.idea/**/markdown-navigator.xml
-.idea/**/markdown-navigator-enh.xml
-.idea/**/markdown-navigator/
+# Dump file
+*.stackdump
 
-# Cache file creation bug
-# See https://youtrack.jetbrains.com/issue/JBR-2257
-.idea/$CACHE_FILE$
+# Folder config file
+[Dd]esktop.ini
 
-# CodeStream plugin
-# https://plugins.jetbrains.com/plugin/12206-codestream
-.idea/codestream.xml
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
 
-# Azure Toolkit for IntelliJ plugin
-# https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
-.idea/**/azureSettings.xml
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
 
-# End of https://www.toptal.com/developers/gitignore/api/node,webstorm,macos,visualstudiocode,dotenv
+# Windows shortcuts
+*.lnk
+
+# End of https://www.toptal.com/developers/gitignore/api/node,astro,linux,macos,react,direnv,dotenv,windows,visualstudiocode,webstorm+all

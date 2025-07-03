@@ -1,0 +1,29 @@
+---
+import SocialIcon from "./SocialIcon.astro";
+---
+
+<footer
+  class="footer-center footer footer-horizontal rounded bg-base-200 p-10 text-base-content"
+>
+  <nav class="grid grid-flow-col gap-4">
+    <a href="/" class="link link-hover">Home</a>
+    <a href="/contact" class="link link-hover">Contact</a>
+    <a href="/blog" class="link link-hover">Blog</a>
+  </nav>
+  <nav>
+    <div class="grid grid-flow-col gap-4">
+      <SocialIcon
+        name="twitter"
+        href="https://x.com/Kentaro1043"
+        width="32"
+        height="32/"
+      />
+      <SocialIcon
+        name="github"
+        href="https://github.com/Kentaro1043"
+        width="32"
+        height="32/"
+      />
+    </div>
+  </nav>
+</footer>
