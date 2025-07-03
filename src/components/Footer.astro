@@ -2,7 +2,9 @@
 import SocialIcon from "./SocialIcon.astro";
 ---
 
-<footer class="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10">
+<footer
+  class="footer-center footer footer-horizontal rounded bg-base-200 p-10 text-base-content"
+>
   <nav class="grid grid-flow-col gap-4">
     <a href="/" class="link link-hover">Home</a>
     <a href="/contact" class="link link-hover">Contact</a>
@@ -10,8 +12,18 @@ import SocialIcon from "./SocialIcon.astro";
   </nav>
   <nav>
     <div class="grid grid-flow-col gap-4">
-      <SocialIcon name="twitter" href="https://x.com/Kentaro1043" width=32 height=32/>
-      <SocialIcon name="github" href="https://github.com/Kentaro1043" width=32 height=32/>
+      <SocialIcon
+        name="twitter"
+        href="https://x.com/Kentaro1043"
+        width="32"
+        height="32/"
+      />
+      <SocialIcon
+        name="github"
+        href="https://github.com/Kentaro1043"
+        width="32"
+        height="32/"
+      />
     </div>
   </nav>
 </footer>
