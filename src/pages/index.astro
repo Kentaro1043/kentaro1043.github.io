@@ -7,6 +7,7 @@ import { Icon } from "astro-icon/components";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 
 import atcoderLogo from "../../public/atcoder.webp";
+import SNSCard from "../components/SNSCard.astro";
 ---
 
 <!doctype html>
@@ -41,59 +42,63 @@ import atcoderLogo from "../../public/atcoder.webp";
             </div>
           </div>
           <div class="flex w-full flex-col gap-2">
-            <a
+            <SNSCard
               href="https://x.com/Kentaro1043"
-              target="_blank"
-              class="animate-float-up-delay-1 flex w-full items-center gap-2 rounded-lg bg-[#0F1419] px-4 py-3 text-white"
-            >
-              <Icon name="fa6-brands:x-twitter" width="28" height="28" />
-              <span class="font-mono">@Kentaro1043</span>
-            </a>
-            <a
+              class="animate-float-up-delay-1 bg-[#0F1419] text-white"
+              iconType="icon"
+              iconProps={{
+                name: "fa6-brands:x-twitter",
+                width: 28,
+                height: 28,
+              }}
+              text="@Kentaro1043"
+            />
+            <SNSCard
               href="https://msky.kentaro1043.com/@Kentaro1043"
-              target="_blank"
-              class="animate-float-up-delay-2 flex w-full items-center gap-2 rounded-lg bg-[#98c934] px-4 py-3 text-white"
-            >
-              <img
-                src="/misskey.svg"
-                alt="misskey logo"
-                width="28"
-                height="28"
-              />
-              <span class="font-mono break-all">
-                @Kentaro1043@msky.kentaro1043.com
-              </span>
-            </a>
-            <a
+              class="animate-float-up-delay-2 bg-[#98c934] text-white"
+              iconType="img"
+              iconProps={{
+                src: "/misskey.svg",
+                alt: "misskey logo",
+                width: 28,
+                height: 28,
+              }}
+              text="@Kentaro1043@msky.kentaro1043.com"
+              textClass="break-all"
+            />
+            <SNSCard
               href="https://github.com/Kentaro1043"
-              target="_blank"
-              class="animate-float-up-delay-3 flex w-full items-center gap-2 rounded-lg bg-black px-4 py-3 text-white"
-            >
-              <Icon name="fa6-brands:github" width="28" height="28" />
-              <span class="font-mono">@Kentaro1043</span>
-            </a>
-            <a
+              class="animate-float-up-delay-3 bg-black text-white"
+              iconType="icon"
+              iconProps={{ name: "fa6-brands:github", width: 28, height: 28 }}
+              text="@Kentaro1043"
+            />
+            <SNSCard
               href="https://atcoder.jp/users/Kentaro1043"
-              target="_blank"
-              class="animate-float-up-delay-4 flex w-full items-center gap-2 rounded-lg bg-white px-4 py-3 text-black"
-            >
-              <Image
-                src={atcoderLogo}
-                alt="AtCoder logo"
-                width="28"
-                height="28"
-                loading="eager"
-              />
-              <span class="font-mono text-black">@Kentaro1043</span>
-            </a>
-            <a
+              class="animate-float-up-delay-4 bg-white text-black"
+              iconType="image"
+              iconProps={{
+                src: atcoderLogo,
+                alt: "AtCoder logo",
+                width: 28,
+                height: 28,
+                loading: "eager",
+              }}
+              text="@Kentaro1043"
+              textClass="text-black"
+            />
+            <SNSCard
               href="https://zenn.dev/kentaro1043"
-              target="_blank"
-              class="animate-float-up-delay-5 flex w-full items-center gap-2 rounded-lg bg-[#5da5f8] px-4 py-3 text-white"
-            >
-              <img src="/zenn.svg" alt="Zenn logo" width="28" height="28" />
-              <span class="font-mono">@kentaro1043</span>
-            </a>
+              class="animate-float-up-delay-5 bg-[#5da5f8] text-white"
+              iconType="img"
+              iconProps={{
+                src: "/zenn.svg",
+                alt: "Zenn logo",
+                width: 28,
+                height: 28,
+              }}
+              text="@kentaro1043"
+            />
           </div>
         </div>
       </div>

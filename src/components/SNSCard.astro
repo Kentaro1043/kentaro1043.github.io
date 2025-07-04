@@ -1,0 +1,26 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+const {
+  href,
+  iconType = "icon", // "icon", "img", "image"
+  iconProps = {},
+  text,
+  class: className = "",
+  textClass = "",
+  ...rest
+} = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={`flex w-full items-center gap-2 rounded-lg px-4 py-3 ${className}`}
+  {...rest}
+>
+  {iconType === "icon" && iconProps.name && <Icon {...iconProps} />}
+  {iconType === "img" && iconProps.src && <img {...iconProps} />}
+  {iconType === "image" && iconProps.src && <Image {...iconProps} />}
+  <span class={`font-mono ${textClass}`}>{text}</span>
+</a>
