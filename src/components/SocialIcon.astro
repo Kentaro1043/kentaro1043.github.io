@@ -2,7 +2,12 @@
 import { Icon } from "astro-icon/components";
 
 type SNSName = "twitter" | "github";
-const { name, href, width = 24, height = 24 } = Astro.props as {
+const {
+  name,
+  href,
+  width = 24,
+  height = 24,
+} = Astro.props as {
   name: SNSName;
   href: string;
   width?: number;
@@ -17,8 +22,15 @@ const iconMap: Record<SNSName, string> = {
 const iconName = iconMap[name];
 ---
 
-{iconName && href && (
-  <a href={href}>
-    <Icon name={iconName} width={width} height={height} />
-  </a>
-)}
+{
+  iconName && href && (
+    <a
+      href={href}
+      aria-label={name + " link"}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Icon name={iconName} width={width} height={height} />
+    </a>
+  )
+}
