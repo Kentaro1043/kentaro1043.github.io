@@ -104,7 +104,9 @@ import SNSCard from "../components/SNSCard.astro";
       </div>
 
       <section class="flex flex-col gap-3">
-        <h2 class="text-3xl">自己紹介</h2>
+        <h2 class="border-b-2 border-dashed border-gray-400 pb-2 text-3xl">
+          自己紹介
+        </h2>
         <p>けんたろう といいます。</p>
         <p>
           インフラが好きで、k8sクラスタを構築して運用したり、TerraformやAnsibleを用いてIaCでサーバーを構築したりしています。<br
@@ -117,24 +119,28 @@ import SNSCard from "../components/SNSCard.astro";
       </section>
 
       <section class="flex flex-col gap-3">
-        <h2 class="text-3xl">経歴</h2>
+        <h2 class="border-b-2 border-dashed border-gray-400 pb-2 text-3xl">
+          経歴
+        </h2>
+
+        <ul class="timeline timeline-vertical">
+          <li>
+            <div class="timeline-start">2024.4〜</div>
+            <div class="timeline-middle">
+              <Icon name="fa6-solid:circle-check" width="16" height="16" />
+            </div>
+            <div class="timeline-end timeline-box">
+              東京科学大学<br />理工学系<br />情報理工学院<br />数理・計算科学系
+            </div>
+            <hr />
+          </li>
+        </ul>
       </section>
 
-      <ul class="timeline timeline-vertical">
-        <li>
-          <div class="timeline-start">2024.4〜</div>
-          <div class="timeline-middle">
-            <Icon name="fa6-solid:circle-check" width="16" height="16" />
-          </div>
-          <div class="timeline-end timeline-box">
-            東京科学大学<br />理工学系<br />情報理工学院<br />数理・計算科学系
-          </div>
-          <hr />
-        </li>
-      </ul>
-
       <section class="flex flex-col gap-3">
-        <h2 class="text-3xl">所属</h2>
+        <h2 class="border-b-2 border-dashed border-gray-400 pb-2 text-3xl">
+          所属
+        </h2>
 
         <ul class="text-md list rounded-box bg-base-100 shadow-lg">
           <li class="list-row">東京科学大学 デジタル創作同好会traP</li>
@@ -143,19 +149,24 @@ import SNSCard from "../components/SNSCard.astro";
       </section>
 
       <section class="flex flex-col gap-3">
-        <h2 class="text-3xl">資格</h2>
+        <h2 class="border-b-2 border-dashed border-gray-400 pb-2 text-3xl">
+          資格
+        </h2>
 
         <ul class="text-md list rounded-box bg-base-100 shadow-lg">
           <li class="list-row">基本情報技術者試験（FE）合格</li>
           <li class="list-row">応用情報技術者試験（AP）合格</li>
           <li class="list-row">データベーススペシャリスト試験（DB）合格</li>
+          <li class="list-row">第三級アマチュア無線技士</li>
           <li class="list-row">英検（実用英語技能検定）2級</li>
           <li class="list-row">漢検（日本漢字能力検定）準2級</li>
         </ul>
       </section>
 
       <section class="flex flex-col gap-3">
-        <h2 class="text-3xl">大会出場歴</h2>
+        <h2 class="border-b-2 border-dashed border-gray-400 pb-2 text-3xl">
+          大会出場歴
+        </h2>
 
         <ul class="text-md list rounded-box bg-base-100 shadow-lg">
           <li class="list-row">
@@ -168,12 +179,15 @@ import SNSCard from "../components/SNSCard.astro";
             パソコン甲子園2023 プログラミング部門 予選成績優秀者
           </li>
           <li class="list-row">ICPC 2024 国内予選 183位</li>
+          <li class="list-row">ICPC 2025 国内予選 175位</li>
           <li class="list-row">ISUCON14 学生27位</li>
         </ul>
       </section>
 
       <section>
-        <h2 class="text-3xl">その他経歴</h2>
+        <h2 class="border-b-2 border-dashed border-gray-400 pb-2 text-3xl">
+          その他経歴
+        </h2>
 
         <ul class="text-md list rounded-box bg-base-100 shadow-lg">
           <li class="list-row">
