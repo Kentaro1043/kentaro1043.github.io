@@ -52,6 +52,54 @@
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
       "last_modified": "2025-06-25T15:38:15Z",
       "resolved": "github:NixOS/nixpkgs/61c0f513911459945e2cb8bf333dc849f1b976ff?lastModified=1750865895"
+    },
+    "xc@latest": {
+      "last_modified": "2025-06-20T02:24:11Z",
+      "resolved": "github:NixOS/nixpkgs/076e8c6678d8c54204abcb4b1b14c366835a58bb#xc",
+      "source": "devbox-search",
+      "version": "0.8.5",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/43v1aqg20lnqj9gw6nyf95z7bpx73v38-xc-0.8.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/43v1aqg20lnqj9gw6nyf95z7bpx73v38-xc-0.8.5"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/qpr4hval3qxkgavr67sydnna7xlwd6ar-xc-0.8.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/qpr4hval3qxkgavr67sydnna7xlwd6ar-xc-0.8.5"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/n5gn8xvbmsgjxphdpgj4m4lz7p1rcdal-xc-0.8.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/n5gn8xvbmsgjxphdpgj4m4lz7p1rcdal-xc-0.8.5"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/yz0jmagbpzbacdrg0mjyfb3z2rqcaqil-xc-0.8.5",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/yz0jmagbpzbacdrg0mjyfb3z2rqcaqil-xc-0.8.5"
+        }
+      }
     }
   }
 }

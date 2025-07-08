@@ -2,7 +2,12 @@
 import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+
+import atcoderLogo from "../../public/atcoder.webp";
+import SNSCard from "../../components/SNSCard.astro";
 ---
 
 <!doctype html>
@@ -10,9 +15,42 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body>
+  <body class="flex min-h-screen flex-col">
     <Header />
-    <p>🚧 Work In Progress</p>
+    <main
+      class="flex flex-1 flex-col gap-8 px-8 py-6 md:px-36 md:py-16 lg:px-80 lg:py-20"
+    >
+      <section class="flex flex-col gap-5">
+        <h1 class="border-b-2 border-dashed border-accent pb-2 text-4xl">
+          連絡先
+        </h1>
+        <p>メールまたはXのDMにお願いします。</p>
+        <div class="flex flex-col items-start gap-6">
+          <SNSCard
+            href="mailto:contact@kentaro1043.com"
+            class="bg-red-500 text-white"
+            iconType="icon"
+            iconProps={{
+              name: "fa6-solid:envelope",
+              width: 28,
+              height: 28,
+            }}
+            text="contact@kentaro1043.com"
+          />
+          <SNSCard
+            href="https://x.com/Kentaro1043"
+            class="animate-float-up-delay-1 bg-[#0F1419] text-white"
+            iconType="icon"
+            iconProps={{
+              name: "fa6-brands:x-twitter",
+              width: 28,
+              height: 28,
+            }}
+            text="@Kentaro1043"
+          />
+        </div>
+      </section>
+    </main>
     <Footer />
   </body>
 </html>
