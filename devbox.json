@@ -1,16 +1,13 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.2/.schema/devbox.schema.json",
-  "packages": [
-    "bun@latest",
-    "xc@latest"
-  ],
+  "packages": ["bun@latest", "xc@latest"],
   "shell": {
     "init_hook": ["echo '🎉 devbox enabled'"],
     "scripts": {
-      "check":  "bunx --bun biome check",
-      "format": "bunx --bun biome format --fix",
-      "lint":   "bunx --bun biome lint --fix",
-      "dev":    "bun run dev"
+      "format": "xc format",
+      "lint": "xc lint",
+      "dev": "xc dev",
+      "build": "xc build"
     }
   }
 }
