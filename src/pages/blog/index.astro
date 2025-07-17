@@ -31,17 +31,17 @@ const posts = (await getCollection("blog")).sort(
               >
                 <a
                   href={`/blog/${post.id}/`}
-                  class="group block transition duration-200 ease-in-out"
+                  class="group block transition duration-200 ease-in-out rounded-2xl border-2 border-accent"
                 >
                   {post.data.heroImage && (
                     <Image
-                      width={720}
-                      height={360}
+                      width={480}
+                      height={240}
                       src={post.data.heroImage}
                       alt=""
                       class={
                         idx === 0
-                          ? "mb-2 w-full rounded-xl group-hover:shadow-lg"
+                          ? "mb-2 w-full max-w-md mx-auto rounded-xl group-hover:shadow-lg"
                           : "mb-2 rounded-xl group-hover:shadow-lg"
                       }
                     />
