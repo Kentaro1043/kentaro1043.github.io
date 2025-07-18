@@ -1,8 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
-import { Image } from "astro:assets";
+import Prose from "../components/Prose.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -19,20 +20,22 @@ const { title, pubDate, updatedDate, heroImage } = Astro.props;
               width={720}
               height={360}
               src={heroImage}
-              alt=""
+              alt="記事サムネイル"
               class="h-auto w-full"
             />
           )
         }
       </div>
-      <div class="prose-lg prose-slate dark:prose-invert mx-auto prose">
-        <div class="flex flex-col gap-1">
-          <h1 class="text-2xl font-bold text-primary">{title}</h1>
-          <div class="flex items-center gap-4 text-sm text-neutral-content">
+      <div class="text-center">
+        <div class="flex flex-col gap-1 lg:gap-2">
+          <h1 class="text-2xl font-bold text-primary lg:text-4xl">{title}</h1>
+          <div
+            class="flex items-center gap-4 text-sm text-neutral-content lg:text-base"
+          >
             <FormattedDate date={pubDate} />
             {
               updatedDate && (
-                <div class="text-xs opacity-75">
+                <div class="text-xs opacity-75 lg:text-sm">
                   Last updated on <FormattedDate date={updatedDate} />
                 </div>
               )
@@ -42,6 +45,9 @@ const { title, pubDate, updatedDate, heroImage } = Astro.props;
         </div>
       </div>
     </div>
-    <slot />
+
+    <Prose>
+      <slot />
+    </Prose>
   </article>
 </BaseLayout>
