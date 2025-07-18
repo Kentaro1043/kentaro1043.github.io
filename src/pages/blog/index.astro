@@ -1,7 +1,5 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
@@ -45,87 +43,73 @@ const posts = await Promise.all(
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<!doctype html>
-<html lang="ja">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body class="flex min-h-screen flex-col">
-    <Header />
-    <main
-      class="flex flex-1 flex-col gap-8 px-8 py-6 md:px-36 md:py-16 lg:px-80 lg:py-20"
-    >
-      <section class="flex flex-col gap-5">
-        <h1 class="border-b-2 border-dashed border-primary pb-2 text-4xl">
-          ブログ
-        </h1>
-        <ul class="flex list-none flex-wrap gap-4">
-          {
-            posts.map((post, idx) => (
-              <li class="w-full xl:w-[calc(50%-16px)]">
-                <a
-                  href={
-                    post.data.externalUrl
-                      ? post.data.externalUrl
-                      : `/blog/${post.id}/`
-                  }
-                  class="flex flex-col gap-2 rounded-2xl border-2 border-primary p-2 transition-colors hover:bg-primary hover:text-primary-content"
-                  target={post.data.externalUrl ? "_blank" : undefined}
-                  rel={
-                    post.data.externalUrl ? "noopener noreferrer" : undefined
-                  }
-                >
-                  {post.data.externalUrl ? (
-                    <>
-                      {(post.data as any).ogImage && (
-                        <Image
-                          width={720}
-                          height={360}
-                          src={(post.data as any).ogImage}
-                          alt={`「${(post.data as any).ogTitle ?? post.data.title}」のサムネイル`}
-                          class="rounded-xl"
-                          loading={"eager"}
-                        />
-                      )}
-                      <div>
-                        <h4 class="text-lg leading-tight">
-                          {(post.data as any).ogTitle ?? post.data.title}
-                        </h4>
-                        {post.data.externalUrl && (
-                          <p class="mt-1 text-sm break-all opacity-75">
-                            {new URL(post.data.externalUrl).host}
-                          </p>
-                        )}
-                        <p class="mt-1 text-sm opacity-75">
-                          <FormattedDate date={post.data.pubDate} />
-                        </p>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      {post.data.heroImage && (
-                        <Image
-                          width={720}
-                          height={360}
-                          src={post.data.heroImage}
-                          alt={`「${post.data.title}」のサムネイル`}
-                          class="rounded-xl"
-                          loading={"eager"}
-                        />
-                      )}
-                      <h4 class="text-lg leading-tight">{post.data.title}</h4>
-                      <p class="text-sm opacity-75">
-                        <FormattedDate date={post.data.pubDate} />
-                      </p>
-                    </>
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <section class="flex flex-col gap-5">
+    <h1 class="border-b-2 border-dashed border-primary pb-2 text-4xl">
+      ブログ
+    </h1>
+    <ul class="flex list-none flex-wrap gap-4">
+      {
+        posts.map((post, idx) => (
+          <li class="w-full xl:w-[calc(50%-16px)]">
+            <a
+              href={
+                post.data.externalUrl
+                  ? post.data.externalUrl
+                  : `/blog/${post.id}/`
+              }
+              class="flex flex-col gap-2 rounded-2xl border-2 border-primary p-2 transition-colors hover:bg-primary hover:text-primary-content"
+              target={post.data.externalUrl ? "_blank" : undefined}
+              rel={post.data.externalUrl ? "noopener noreferrer" : undefined}
+            >
+              {post.data.externalUrl ? (
+                <>
+                  {(post.data as any).ogImage && (
+                    <Image
+                      width={720}
+                      height={360}
+                      src={(post.data as any).ogImage}
+                      alt={`「${(post.data as any).ogTitle ?? post.data.title}」のサムネイル`}
+                      class="rounded-xl"
+                      loading={"eager"}
+                    />
                   )}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+                  <div>
+                    <h4 class="text-lg leading-tight">
+                      {(post.data as any).ogTitle ?? post.data.title}
+                    </h4>
+                    {post.data.externalUrl && (
+                      <p class="mt-1 text-sm break-all opacity-75">
+                        {new URL(post.data.externalUrl).host}
+                      </p>
+                    )}
+                    <p class="mt-1 text-sm opacity-75">
+                      <FormattedDate date={post.data.pubDate} />
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {post.data.heroImage && (
+                    <Image
+                      width={720}
+                      height={360}
+                      src={post.data.heroImage}
+                      alt={`「${post.data.title}」のサムネイル`}
+                      class="rounded-xl"
+                      loading={"eager"}
+                    />
+                  )}
+                  <h4 class="text-lg leading-tight">{post.data.title}</h4>
+                  <p class="text-sm opacity-75">
+                    <FormattedDate date={post.data.pubDate} />
+                  </p>
+                </>
+              )}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
