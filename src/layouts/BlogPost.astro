@@ -46,8 +46,10 @@ const { title, pubDate, updatedDate, heroImage } = Astro.props;
       </div>
     </div>
 
-    <Prose>
-      <slot />
-    </Prose>
+    <div class="flex justify-center">
+      <Prose>
+        <slot />
+      </Prose>
+    </div>
   </article>
 </BaseLayout>
