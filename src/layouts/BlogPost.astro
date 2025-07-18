@@ -1,50 +1,47 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import { Image } from "astro:assets";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
-
-  <body>
-    <Header />
-    <main>
-      <article>
-        <div class="hero-image">
-          {
-            heroImage && (
-              <Image width={1020} height={510} src={heroImage} alt="" />
-            )
-          }
-        </div>
-        <div class="prose">
-          <div class="title">
-            <div class="date">
-              <FormattedDate date={pubDate} />
-              {
-                updatedDate && (
-                  <div class="last-updated-on">
-                    Last updated on <FormattedDate date={updatedDate} />
-                  </div>
-                )
-              }
-            </div>
-            <hr />
+<BaseLayout title={title}>
+  <article>
+    <div class="my-4 flex flex-col gap-4">
+      <div class="hero-image overflow-hidden rounded-xl">
+        {
+          heroImage && (
+            <Image
+              width={720}
+              height={360}
+              src={heroImage}
+              alt=""
+              class="h-auto w-full"
+            />
+          )
+        }
+      </div>
+      <div class="prose-lg prose-slate dark:prose-invert mx-auto prose">
+        <div class="flex flex-col gap-1">
+          <h1 class="text-2xl font-bold text-primary">{title}</h1>
+          <div class="flex items-center gap-4 text-sm text-neutral-content">
+            <FormattedDate date={pubDate} />
+            {
+              updatedDate && (
+                <div class="text-xs opacity-75">
+                  Last updated on <FormattedDate date={updatedDate} />
+                </div>
+              )
+            }
           </div>
-          <slot />
+          <hr class="border-dashed border-primary" />
         </div>
-      </article>
-    </main>
-    <Footer />
-  </body>
-</html>
+      </div>
+    </div>
+    <slot />
+  </article>
+</BaseLayout>
