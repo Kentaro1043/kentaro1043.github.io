@@ -24,13 +24,13 @@ const sortedSelfIntroductionEntries = selfIntroductionEntries
     return numA - numB;
   });
 
-const profileContents = [];
+const profileContents: Array<any> = [];
 for (const entry of sortedProfileEntries) {
   const { Content } = await render(entry);
   profileContents.push(Content);
 }
 
-const selfIntroductionContents = [];
+const selfIntroductionContents: Array<any> = [];
 for (const entry of sortedSelfIntroductionEntries) {
   const { Content } = await render(entry);
   selfIntroductionContents.push(Content);
