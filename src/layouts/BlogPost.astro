@@ -13,7 +13,9 @@ const { title, pubDate, updatedDate, heroImage } = Astro.props;
 <BaseLayout title={title}>
   <article>
     <div class="my-4 flex flex-col gap-4">
-      <div class="hero-image overflow-hidden rounded-xl">
+      <div
+        class="hero-image mx-auto max-w-lg overflow-hidden rounded-xl align-middle"
+      >
         {
           heroImage && (
             <Image
