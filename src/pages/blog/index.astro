@@ -65,14 +65,14 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
               {post.data.externalUrl ? (
                 <>
                   {(post.data as any).ogImage && (
-                    <div class="h-48 md:h-64">
+                    <div class="h-48 md:h-64 lg:h-72 xl:h-96">
                       {" "}
                       <Image
                         width={720}
                         height={360}
                         src={(post.data as any).ogImage}
                         alt={`「${(post.data as any).ogTitle ?? post.data.title}」のサムネイル`}
-                        class="h-full w-full rounded-xl object-none"
+                        class="h-full w-full rounded-xl object-cover"
                         loading={"eager"}
                       />
                     </div>
@@ -94,13 +94,13 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
               ) : (
                 <>
                   {post.data.heroImage && (
-                    <div class="h-48 md:h-64">
+                    <div class="h-48 md:h-64 lg:h-72 xl:h-96">
                       <Image
                         width={720}
                         height={360}
                         src={post.data.heroImage}
                         alt={`「${post.data.title}」のサムネイル`}
-                        class="h-full w-full rounded-xl object-none"
+                        class="h-full w-full rounded-xl object-cover"
                         loading={"eager"}
                       />
                     </div>
