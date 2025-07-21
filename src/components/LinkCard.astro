@@ -1,6 +1,6 @@
 ---
+import { Image } from "astro:assets";
 import ogs from "open-graph-scraper";
-
 export interface Props {
   url: string;
 }
@@ -25,7 +25,7 @@ const domain = new URL(url).hostname.replace("www.", "");
 
 <a
   href={url}
-  class="not-prose card card-side h-24 w-full bg-base-100 shadow-md card-xs"
+  class="not-prose card card-side h-24 w-full bg-base-100 shadow-md card-xs hover:opacity-70"
   target="_blank"
   rel="noopener noreferrer"
 >
@@ -37,10 +37,10 @@ const domain = new URL(url).hostname.replace("www.", "");
     }
   </figure>
   <div class="card-body w-[calc(100%-128px)]">
-    <h2 class="card-title text-base">{title}</h2>
+    <h2 class="w-full truncate text-base font-semibold">{title}</h2>
     <p class="w-full truncate text-xs">
       {description}
     </p>
-    <p class="text-xs">{domain}</p>
+    <p class="text-xs text-primary underline">{domain}</p>
   </div>
 </a>

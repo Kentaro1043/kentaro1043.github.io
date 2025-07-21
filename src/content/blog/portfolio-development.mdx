@@ -4,6 +4,8 @@ pubDate: "2025-7-18"
 heroImage: "/public/banner.png"
 ---
 
+import LinkCard from "../../components/LinkCard.astro";
+
 このポートフォリオを作り直しました。
 
 ブログ機能も搭載しましたが、1つも記事がないとテストができないということで、折角なので使った技術と感想を書きます。
@@ -41,8 +43,6 @@ CSS力が十分に無かったので、[new.css](https://newcss.net/)というCl
 
 ### Bun
 
-import LinkCard from "../../components/LinkCard.astro";
-
 <LinkCard url="https://bun.sh/" />
 
 フロントエンドに直接出てこない技術ですが、使ってみたので紹介します。
@@ -57,7 +57,7 @@ BunはNode.js互換のJavaScriptランタイムで、速度を重視して作ら
 
 ### Astro
 
-[Astro](https://astro.build/)
+<LinkCard url="https://astro.build/" />
 
 Reactを使って静的なWebサイトを作ることができるフレームワークです。
 
@@ -69,7 +69,7 @@ Next.jsにあるような動的サイト用の機能が排除されていて、�
 
 ### Tailwind CSS
 
-[Tailwind CSS](https://tailwindcss.com/)
+<LinkCard url="https://tailwindcss.com/" />
 
 有名なライブラリですが、今回始めて使いました。
 
@@ -83,7 +83,7 @@ HTMLとCSSのファイルを往復したり、CSSを`style`に書かなくても
 
 ### daisyUI
 
-[daisyUI](https://daisyui.com/)
+<LinkCard url="https://daisyui.com/" />
 
 Tailwind CSSのコンポーネントライブラリです。
 
