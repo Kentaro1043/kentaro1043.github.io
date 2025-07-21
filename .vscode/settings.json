@@ -27,5 +27,8 @@
   },
 
   "prettier.documentSelectors": ["**/*.astro"],
-  "biome.enabled": false
+  "biome.enabled": false,
+  "markdownlint.config": {
+    "no-inline-html": false
+  }
 }
