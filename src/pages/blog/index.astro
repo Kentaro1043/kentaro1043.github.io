@@ -1,120 +1,125 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import { Image } from "astro:assets";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+const rawPosts = await getCollection("blog");
+
+async function fetchOGP(url: string) {
+  try {
+    const res = await fetch(url);
+    const html = await res.text();
+    const ogImage = html.match(
+      /<meta property="og:image" content="([^"]+)"/,
+    )?.[1];
+    const ogTitle = html.match(
+      /<meta property="og:title" content="([^"]+)"/,
+    )?.[1];
+    return { ogImage, ogTitle };
+  } catch {
+    return {};
+  }
+}
+
+const posts = await Promise.all(
+  rawPosts.map(async (post) => {
+    if (post.data.externalUrl) {
+      const ogp = await fetchOGP(post.data.externalUrl);
+      return {
+        ...post,
+        data: {
+          ...post.data,
+          ogImage: ogp.ogImage,
+          ogTitle: ogp.ogTitle,
+        },
+      };
+    }
+    return post;
+  }),
 );
+
+posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      main {
-        width: 960px;
-      }
-      ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-      ul li {
-        width: calc(50% - 1rem);
-      }
-      ul li * {
-        text-decoration: none;
-        transition: 0.2s ease;
-      }
-      ul li:first-child {
-        width: 100%;
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-      ul li:first-child img {
-        width: 100%;
-      }
-      ul li:first-child .title {
-        font-size: 2.369rem;
-      }
-      ul li img {
-        margin-bottom: 0.5rem;
-        border-radius: 12px;
-      }
-      ul li a {
-        display: block;
-      }
-      .title {
-        margin: 0;
-        color: rgb(var(--black));
-        line-height: 1;
-      }
-      .date {
-        margin: 0;
-        color: rgb(var(--gray));
-      }
-      ul li a:hover h4,
-      ul li a:hover .date {
-        color: rgb(var(--accent));
-      }
-      ul a:hover img {
-        box-shadow: var(--box-shadow);
-      }
-      @media (max-width: 720px) {
-        ul {
-          gap: 0.5em;
-        }
-        ul li {
-          width: 100%;
-          text-align: center;
-        }
-        ul li:first-child {
-          margin-bottom: 0;
-        }
-        ul li:first-child .title {
-          font-size: 1.563em;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <Header />
-    <p>🚧 Work In Progress</p>
-    <main>
-      <section>
-        <ul>
-          {
-            posts.map((post) => (
-              <li>
-                <a href={`/blog/${post.id}/`}>
-                  {post.data.heroImage && (
-                    <Image
-                      width={720}
-                      height={360}
-                      src={post.data.heroImage}
-                      alt=""
-                    />
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <section class="flex flex-col gap-5">
+    <h1 class="border-b-2 border-dashed border-primary pb-2 text-4xl">
+      ブログ
+    </h1>
+    <ul class="flex list-none flex-wrap gap-4">
+      {
+        posts.map((post, idx) => (
+          <li class="w-full xl:w-[calc(50%-16px)]">
+            <a
+              href={
+                post.data.externalUrl
+                  ? post.data.externalUrl
+                  : `/blog/${post.id}/`
+              }
+              class="flex flex-col gap-2 rounded-2xl border-2 border-primary p-2 transition-colors hover:opacity-60"
+              target={post.data.externalUrl ? "_blank" : undefined}
+              rel={post.data.externalUrl ? "noopener noreferrer" : undefined}
+            >
+              {post.data.externalUrl ? (
+                <>
+                  {(post.data as any).ogImage && (
+                    <div class="h-48 md:h-64">
+                      {" "}
+                      <Image
+                        width={720}
+                        height={360}
+                        src={(post.data as any).ogImage}
+                        alt={`「${(post.data as any).ogTitle ?? post.data.title}」のサムネイル`}
+                        class="h-full w-full rounded-xl object-none"
+                        loading={"eager"}
+                      />
+                    </div>
                   )}
-                  <h4 class="title">{post.data.title}</h4>
-                  <p class="date">
-                    <FormattedDate date={post.data.pubDate} />
-                  </p>
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+                  <div>
+                    <h4 class="text-lg leading-tight">
+                      {(post.data as any).ogTitle ?? post.data.title}
+                    </h4>
+                    {post.data.externalUrl && (
+                      <p class="mt-1 text-sm break-all opacity-75">
+                        {new URL(post.data.externalUrl).host}
+                      </p>
+                    )}
+                    <p class="mt-1 text-sm opacity-75">
+                      <FormattedDate date={post.data.pubDate} />
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {post.data.heroImage && (
+                    <div class="h-48 md:h-64">
+                      <Image
+                        width={720}
+                        height={360}
+                        src={post.data.heroImage}
+                        alt={`「${post.data.title}」のサムネイル`}
+                        class="h-full w-full rounded-xl object-none"
+                        loading={"eager"}
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <h4 class="text-lg leading-tight">{post.data.title}</h4>
+                    <p class="mt-1 text-sm break-all opacity-75">
+                      kentaro1043.com{" "}
+                    </p>
+                    <p class="mt-1 text-sm opacity-75">
+                      <FormattedDate date={post.data.pubDate} />
+                    </p>
+                  </div>
+                </>
+              )}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

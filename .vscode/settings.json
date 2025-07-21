@@ -1,6 +1,7 @@
 {
   "files.associations": {
-    "*.css": "tailwindcss"
+    "*.css": "tailwindcss",
+    "*.mdx": "markdown"
   },
 
   "[astro]": {
@@ -26,5 +27,8 @@
   },
 
   "prettier.documentSelectors": ["**/*.astro"],
-  "biome.enabled": false
+  "biome.enabled": false,
+  "markdownlint.config": {
+    "no-inline-html": false
+  }
 }

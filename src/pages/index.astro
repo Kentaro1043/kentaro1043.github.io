@@ -1,248 +1,185 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-
+import { Icon } from "astro-icon/components";
 import atcoderLogo from "../../public/atcoder.webp";
 import SNSCard from "../components/SNSCard.astro";
+import ProfileProse from "../components/ProfileProse.astro";
+import { getCollection, render } from "astro:content";
+
+const profileEntries = await getCollection("profile");
+const selfIntroductionEntries = await getCollection("selfIntroduction");
+
+// Sort by numeric prefix in id (filename)
+const sortedProfileEntries = profileEntries.slice().sort((a, b) => {
+  const numA = parseInt(a.id.split("-")[0], 10);
+  const numB = parseInt(b.id.split("-")[0], 10);
+  return numA - numB;
+});
+const sortedSelfIntroductionEntries = selfIntroductionEntries
+  .slice()
+  .sort((a, b) => {
+    const numA = parseInt(a.id.split("-")[0], 10);
+    const numB = parseInt(b.id.split("-")[0], 10);
+    return numA - numB;
+  });
+
+const profileContents: Array<any> = [];
+for (const entry of sortedProfileEntries) {
+  const { Content } = await render(entry);
+  profileContents.push(Content);
+}
+
+const selfIntroductionContents: Array<any> = [];
+for (const entry of sortedSelfIntroductionEntries) {
+  const { Content } = await render(entry);
+  selfIntroductionContents.push(Content);
+}
 ---
 
-<!doctype html>
-<html lang="ja">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body class="flex min-h-screen flex-col">
-    <Header />
-    <main
-      class="flex flex-1 flex-col gap-8 px-8 py-6 md:px-36 md:py-16 lg:px-80 lg:py-20"
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <div
+    class="hero mx-auto max-w-xl rounded-2xl border-2 border-primary bg-base-200 py-4"
+  >
+    <div
+      class="hero-content w-2xs flex-col gap-4 md:w-sm md:gap-6 lg:w-md lg:gap-8"
     >
       <div
-        class="hero mx-auto max-w-xl rounded-2xl border-2 border-accent bg-base-200 py-4"
+        class="animate-float-up flex flex-row items-center justify-center gap-4 md:gap-6 lg:gap-8"
       >
-        <div
-          class="hero-content w-2xs flex-col gap-4 md:w-sm md:gap-6 lg:w-md lg:gap-8"
-        >
-          <div
-            class="animate-float-up flex flex-row items-center justify-center gap-4 md:gap-6 lg:gap-8"
-          >
-            <div class="avatar">
-              <div class="w-24 rounded-2xl md:w-32 lg:w-40">
-                <img src="/icon.webp" alt="けんたろうのアイコン" />
-              </div>
-            </div>
-            <div class="flex flex-col">
-              <h1 class="text-2xl font-bold lg:text-4xl">けんたろう</h1>
-              <p class="text-left font-mono text-gray-400 lg:text-xl">
-                @Kentaro1043
-              </p>
-            </div>
-          </div>
-          <div class="flex w-full flex-col gap-2">
-            <SNSCard
-              href="https://x.com/Kentaro1043"
-              class="animate-float-up-delay-1 bg-[#0F1419] text-white"
-              iconType="icon"
-              iconProps={{
-                name: "fa6-brands:x-twitter",
-                width: 28,
-                height: 28,
-              }}
-              text="@Kentaro1043"
-            />
-            <SNSCard
-              href="https://msky.kentaro1043.com/@Kentaro1043"
-              class="animate-float-up-delay-2 bg-[#98c934] text-white"
-              iconType="img"
-              iconProps={{
-                src: "/misskey.svg",
-                alt: "misskey logo",
-                width: 28,
-                height: 28,
-              }}
-              text="@Kentaro1043@msky.kentaro1043.com"
-              textClass="break-all"
-            />
-            <SNSCard
-              href="https://github.com/Kentaro1043"
-              class="animate-float-up-delay-3 bg-black text-white"
-              iconType="icon"
-              iconProps={{ name: "fa6-brands:github", width: 28, height: 28 }}
-              text="@Kentaro1043"
-            />
-            <SNSCard
-              href="https://atcoder.jp/users/Kentaro1043"
-              class="animate-float-up-delay-4 bg-white text-black"
-              iconType="image"
-              iconProps={{
-                src: atcoderLogo,
-                alt: "AtCoder logo",
-                width: 28,
-                height: 28,
-                loading: "eager",
-              }}
-              text="@Kentaro1043"
-              textClass="text-black"
-            />
-            <SNSCard
-              href="https://zenn.dev/kentaro1043"
-              class="animate-float-up-delay-5 bg-[#5da5f8] text-white"
-              iconType="img"
-              iconProps={{
-                src: "/zenn.svg",
-                alt: "Zenn logo",
-                width: 28,
-                height: 28,
-              }}
-              text="@kentaro1043"
-            />
+        <div class="avatar">
+          <div class="w-24 rounded-2xl md:w-32 lg:w-40">
+            <img src="/icon.webp" alt="けんたろうのアイコン" />
           </div>
         </div>
+        <div class="flex flex-col">
+          <h1 class="text-2xl font-bold lg:text-4xl">けんたろう</h1>
+          <p class="text-left font-mono text-gray-400 lg:text-xl">
+            @Kentaro1043
+          </p>
+        </div>
       </div>
+      <div class="flex w-full flex-col gap-2">
+        <SNSCard
+          href="https://x.com/Kentaro1043"
+          class="animate-float-up-delay-1 bg-[#0F1419] text-white"
+          iconType="icon"
+          iconProps={{
+            name: "fa6-brands:x-twitter",
+            width: 28,
+            height: 28,
+          }}
+          text="@Kentaro1043"
+        />
+        <SNSCard
+          href="https://msky.kentaro1043.com/@Kentaro1043"
+          class="animate-float-up-delay-2 bg-[#98c934] text-white"
+          iconType="img"
+          iconProps={{
+            src: "/misskey.svg",
+            alt: "misskey logo",
+            width: 28,
+            height: 28,
+          }}
+          text="@Kentaro1043@msky.kentaro1043.com"
+          textClass="break-all"
+        />
+        <SNSCard
+          href="https://github.com/Kentaro1043"
+          class="animate-float-up-delay-3 bg-black text-white"
+          iconType="icon"
+          iconProps={{ name: "fa6-brands:github", width: 28, height: 28 }}
+          text="@Kentaro1043"
+        />
+        <SNSCard
+          href="https://atcoder.jp/users/Kentaro1043"
+          class="animate-float-up-delay-4 bg-white text-black"
+          iconType="image"
+          iconProps={{
+            src: atcoderLogo,
+            alt: "AtCoder logo",
+            width: 28,
+            height: 28,
+            loading: "eager",
+          }}
+          text="@Kentaro1043"
+          textClass="text-black"
+        />
+        <SNSCard
+          href="https://zenn.dev/kentaro1043"
+          class="animate-float-up-delay-5 bg-[#5da5f8] text-white"
+          iconType="img"
+          iconProps={{
+            src: "/zenn.svg",
+            alt: "Zenn logo",
+            width: 28,
+            height: 28,
+          }}
+          text="@kentaro1043"
+        />
+      </div>
+    </div>
+  </div>
 
-      <section class="flex flex-col gap-3">
-        <h2 class="border-b-2 border-dashed border-accent pb-2 text-3xl">
-          自己紹介
-        </h2>
-        <p>けんたろう といいます。</p>
-        <p>
-          インフラが好きで、k8sクラスタを構築して運用したり、TerraformやAnsibleを用いてIaCでサーバーを構築したりしています。<br
-          />
-          Web系の技術全般も好きで、フロントエンドやバックエンドの開発も行っています。
-        </p>
-        <p>
-          大学のサークルではインフラ管理をしたり、Webアプリケーションの開発をしたり、アマチュア無線をやったりしています。
-        </p>
-      </section>
+  <ProfileProse>
+    {selfIntroductionContents.map((Content, idx) => <Content key={idx} />)}
+    <h2>経歴</h2>
+    <ul class="not-prose timeline timeline-vertical text-base-content">
+      <li>
+        <div class="timeline-start">2024.4〜</div>
+        <div class="timeline-middle">
+          <Icon name="fa6-solid:circle-check" width="16" height="16" />
+        </div>
+        <div class="timeline-end timeline-box">
+          東京科学大学<br />理工学系<br />情報理工学院<br />数理・計算科学系
+        </div>
+        <hr />
+      </li>
+    </ul>
+    {profileContents.map((Content, idx) => <Content key={idx} />)}
+  </ProfileProse>
 
-      <section class="flex flex-col gap-3">
-        <h2 class="border-b-2 border-dashed border-accent pb-2 text-3xl">
-          経歴
-        </h2>
+  <style>
+    .animate-float-up {
+      animation: float-up 1s ease-in-out;
+      animation-fill-mode: forwards;
+    }
+    .animate-float-up-delay-1 {
+      opacity: 0;
+      animation: float-up 0.3s ease-in-out 1s;
+      animation-fill-mode: forwards;
+    }
+    .animate-float-up-delay-2 {
+      opacity: 0;
+      animation: float-up 0.3s ease-in-out 1.3s;
+      animation-fill-mode: forwards;
+    }
+    .animate-float-up-delay-3 {
+      opacity: 0;
+      animation: float-up 0.3s ease-in-out 1.6s;
+      animation-fill-mode: forwards;
+    }
 
-        <ul class="timeline timeline-vertical">
-          <li>
-            <div class="timeline-start">2024.4〜</div>
-            <div class="timeline-middle">
-              <Icon name="fa6-solid:circle-check" width="16" height="16" />
-            </div>
-            <div class="timeline-end timeline-box">
-              東京科学大学<br />理工学系<br />情報理工学院<br />数理・計算科学系
-            </div>
-            <hr />
-          </li>
-        </ul>
-      </section>
+    .animate-float-up-delay-4 {
+      opacity: 0;
+      animation: float-up 0.3s ease-in-out 1.9s;
+      animation-fill-mode: forwards;
+    }
+    .animate-float-up-delay-5 {
+      opacity: 0;
+      animation: float-up 0.3s ease-in-out 2.2s;
+      animation-fill-mode: forwards;
+    }
 
-      <section class="flex flex-col gap-3">
-        <h2 class="border-b-2 border-dashed border-accent pb-2 text-3xl">
-          所属
-        </h2>
-
-        <ul class="text-md list rounded-box bg-base-100 shadow-lg">
-          <li class="list-row">東京科学大学 デジタル創作同好会traP</li>
-          <li class="list-row">東京科学大学 無線研究部</li>
-        </ul>
-      </section>
-
-      <section class="flex flex-col gap-3">
-        <h2 class="border-b-2 border-dashed border-accent pb-2 text-3xl">
-          資格
-        </h2>
-
-        <ul class="text-md list rounded-box bg-base-100 shadow-lg">
-          <li class="list-row">基本情報技術者試験（FE）合格</li>
-          <li class="list-row">応用情報技術者試験（AP）合格</li>
-          <li class="list-row">データベーススペシャリスト試験（DB）合格</li>
-          <li class="list-row">第三級アマチュア無線技士</li>
-          <li class="list-row">英検（実用英語技能検定）2級</li>
-          <li class="list-row">漢検（日本漢字能力検定）準2級</li>
-        </ul>
-      </section>
-
-      <section class="flex flex-col gap-3">
-        <h2 class="border-b-2 border-dashed border-accent pb-2 text-3xl">
-          大会出場歴
-        </h2>
-
-        <ul class="text-md list rounded-box bg-base-100 shadow-lg">
-          <li class="list-row">
-            第21回日本情報オリンピック（JOI 2021/2022）2次予選進出
-          </li>
-          <li class="list-row">
-            第22回日本情報オリンピック（JOI 2022/2023）本選進出
-          </li>
-          <li class="list-row">
-            パソコン甲子園2023 プログラミング部門 予選成績優秀者
-          </li>
-          <li class="list-row">ICPC 2024 国内予選 183位</li>
-          <li class="list-row">ICPC 2025 国内予選 175位</li>
-          <li class="list-row">ISUCON14 学生27位</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 class="border-b-2 border-dashed border-accent pb-2 text-3xl">
-          その他経歴
-        </h2>
-
-        <ul class="text-md list rounded-box bg-base-100 shadow-lg">
-          <li class="list-row">
-            2023年度情報科学の達人プログラム修了（4期生）
-          </li>
-          <li class="list-row">
-            東京大学 グローバル消費インテリジェンス寄附講座（GCI）2024 Summer
-            修了
-          </li>
-        </ul>
-      </section>
-    </main>
-    <Footer />
-    <style>
-      .animate-float-up {
-        animation: float-up 1s ease-in-out;
-        animation-fill-mode: forwards;
-      }
-      .animate-float-up-delay-1 {
+    @keyframes float-up {
+      0% {
+        transform: translateY(20px);
         opacity: 0;
-        animation: float-up 0.3s ease-in-out 1s;
-        animation-fill-mode: forwards;
       }
-      .animate-float-up-delay-2 {
-        opacity: 0;
-        animation: float-up 0.3s ease-in-out 1.3s;
-        animation-fill-mode: forwards;
+      100% {
+        transform: translateY(0);
+        opacity: 1;
       }
-      .animate-float-up-delay-3 {
-        opacity: 0;
-        animation: float-up 0.3s ease-in-out 1.6s;
-        animation-fill-mode: forwards;
-      }
-
-      .animate-float-up-delay-4 {
-        opacity: 0;
-        animation: float-up 0.3s ease-in-out 1.9s;
-        animation-fill-mode: forwards;
-      }
-      .animate-float-up-delay-5 {
-        opacity: 0;
-        animation: float-up 0.3s ease-in-out 2.2s;
-        animation-fill-mode: forwards;
-      }
-
-      @keyframes float-up {
-        0% {
-          transform: translateY(20px);
-          opacity: 0;
-        }
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-    </style>
-  </body>
-</html>
+    }
+  </style>
+</BaseLayout>
