@@ -1,0 +1,46 @@
+---
+import ogs from "open-graph-scraper";
+
+export interface Props {
+  url: string;
+}
+const { url } = Astro.props;
+
+async function getOpenGraphData(url: string) {
+  try {
+    const { result } = await ogs({ url });
+    return result;
+  } catch (error) {
+    console.error("Error fetching Open Graph data:", error);
+    return null;
+  }
+}
+
+const webSiteData = await getOpenGraphData(url);
+const title = webSiteData?.ogTitle || "No Title Found";
+let description = webSiteData?.ogDescription || "No Description Found";
+const image = webSiteData?.ogImage?.[0]?.url || null;
+const domain = new URL(url).hostname.replace("www.", "");
+---
+
+<a
+  href={url}
+  class="not-prose card card-side h-24 w-full bg-base-100 shadow-md card-xs"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <figure class="h-full w-32 flex-shrink-0 overflow-hidden">
+    {
+      image ? (
+        <img src={image} alt={title} class="h-full w-full object-cover" />
+      ) : null
+    }
+  </figure>
+  <div class="card-body w-[calc(100%-128px)]">
+    <h2 class="card-title text-base">{title}</h2>
+    <p class="w-full truncate text-xs">
+      {description}
+    </p>
+    <p class="text-xs">{domain}</p>
+  </div>
+</a>
