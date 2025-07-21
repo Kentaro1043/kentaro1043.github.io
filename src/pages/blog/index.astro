@@ -58,21 +58,24 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
                   ? post.data.externalUrl
                   : `/blog/${post.id}/`
               }
-              class="flex flex-col gap-2 rounded-2xl border-2 border-primary p-2 transition-colors hover:bg-primary hover:text-primary-content"
+              class="flex flex-col gap-2 rounded-2xl border-2 border-primary p-2 transition-colors hover:opacity-60"
               target={post.data.externalUrl ? "_blank" : undefined}
               rel={post.data.externalUrl ? "noopener noreferrer" : undefined}
             >
               {post.data.externalUrl ? (
                 <>
                   {(post.data as any).ogImage && (
-                    <Image
-                      width={720}
-                      height={360}
-                      src={(post.data as any).ogImage}
-                      alt={`「${(post.data as any).ogTitle ?? post.data.title}」のサムネイル`}
-                      class="rounded-xl"
-                      loading={"eager"}
-                    />
+                    <div class="h-48 md:h-64">
+                      {" "}
+                      <Image
+                        width={720}
+                        height={360}
+                        src={(post.data as any).ogImage}
+                        alt={`「${(post.data as any).ogTitle ?? post.data.title}」のサムネイル`}
+                        class="h-full w-full rounded-xl object-none"
+                        loading={"eager"}
+                      />
+                    </div>
                   )}
                   <div>
                     <h4 class="text-lg leading-tight">
@@ -91,19 +94,26 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
               ) : (
                 <>
                   {post.data.heroImage && (
-                    <Image
-                      width={720}
-                      height={360}
-                      src={post.data.heroImage}
-                      alt={`「${post.data.title}」のサムネイル`}
-                      class="rounded-xl"
-                      loading={"eager"}
-                    />
+                    <div class="h-48 md:h-64">
+                      <Image
+                        width={720}
+                        height={360}
+                        src={post.data.heroImage}
+                        alt={`「${post.data.title}」のサムネイル`}
+                        class="h-full w-full rounded-xl object-none"
+                        loading={"eager"}
+                      />
+                    </div>
                   )}
-                  <h4 class="text-lg leading-tight">{post.data.title}</h4>
-                  <p class="text-sm opacity-75">
-                    <FormattedDate date={post.data.pubDate} />
-                  </p>
+                  <div>
+                    <h4 class="text-lg leading-tight">{post.data.title}</h4>
+                    <p class="mt-1 text-sm break-all opacity-75">
+                      kentaro1043.com{" "}
+                    </p>
+                    <p class="mt-1 text-sm opacity-75">
+                      <FormattedDate date={post.data.pubDate} />
+                    </p>
+                  </div>
                 </>
               )}
             </a>
