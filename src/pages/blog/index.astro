@@ -5,6 +5,11 @@ import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import { Image } from "astro:assets";
 
+// 型安全な画像URL抽出関数
+function getValidImageSrc(val: unknown): string {
+  return typeof val === "string" && val.length > 0 ? val : "";
+}
+
 const rawPosts = await getCollection("blog");
 
 async function fetchOGP(url: string) {
@@ -50,75 +55,65 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
     </h1>
     <ul class="flex list-none flex-wrap gap-4">
       {
-        posts.map((post, idx) => (
-          <li class="w-full xl:w-[calc(50%-16px)]">
-            <a
-              href={
-                post.data.externalUrl
-                  ? post.data.externalUrl
-                  : `/blog/${post.id}/`
-              }
-              class="flex flex-col gap-2 rounded-2xl border-2 border-primary p-2 transition-colors hover:opacity-60"
-              target={post.data.externalUrl ? "_blank" : undefined}
-              rel={post.data.externalUrl ? "noopener noreferrer" : undefined}
-            >
-              {post.data.externalUrl ? (
-                <>
-                  {(post.data as any).ogImage && (
-                    <div class="h-48 md:h-64 lg:h-72 xl:h-96">
-                      {" "}
-                      <Image
-                        width={720}
-                        height={360}
-                        src={(post.data as any).ogImage}
-                        alt={`「${(post.data as any).ogTitle ?? post.data.title}」のサムネイル`}
-                        class="h-full w-full rounded-xl object-cover"
-                        loading={"eager"}
-                      />
-                    </div>
-                  )}
-                  <div>
-                    <h4 class="text-lg leading-tight">
-                      {(post.data as any).ogTitle ?? post.data.title}
-                    </h4>
-                    {post.data.externalUrl && (
-                      <p class="mt-1 text-sm break-all opacity-75">
-                        {new URL(post.data.externalUrl).host}
-                      </p>
-                    )}
-                    <p class="mt-1 text-sm opacity-75">
-                      <FormattedDate date={post.data.pubDate} />
-                    </p>
+        posts.map((post, idx) => {
+          const isExternal = !!post.data.externalUrl;
+          const imageSrc = isExternal
+            ? getValidImageSrc((post.data as any).ogImage)
+            : getValidImageSrc(post.data.heroImage);
+          const imageAlt = isExternal
+            ? `「${(post.data as any).ogTitle ?? post.data.title}」のサムネイル`
+            : `「${post.data.title}」のサムネイル`;
+          const title = isExternal
+            ? ((post.data as any).ogTitle ?? post.data.title)
+            : post.data.title;
+          const siteName = isExternal
+            ? typeof post.data.externalUrl === "string"
+              ? new URL(post.data.externalUrl).host
+              : ""
+            : "kentaro1043.com";
+          return (
+            <li class="w-full xl:w-[calc(50%-16px)]">
+              <a
+                href={isExternal ? post.data.externalUrl : `/blog/${post.id}/`}
+                class="flex flex-col gap-2 rounded-2xl border-2 border-primary p-2 transition-colors hover:opacity-60"
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+              >
+                {isExternal && imageSrc ? (
+                  <div class="h-48 md:h-64 lg:h-72 xl:h-96">
+                    <img
+                      width={720}
+                      height={360}
+                      src={imageSrc}
+                      alt={imageAlt}
+                      class="h-full w-full rounded-xl object-cover"
+                      loading="eager"
+                    />
                   </div>
-                </>
-              ) : (
-                <>
-                  {post.data.heroImage && (
-                    <div class="h-48 md:h-64 lg:h-72 xl:h-96">
-                      <Image
-                        width={720}
-                        height={360}
-                        src={post.data.heroImage}
-                        alt={`「${post.data.title}」のサムネイル`}
-                        class="h-full w-full rounded-xl object-cover"
-                        loading={"eager"}
-                      />
-                    </div>
-                  )}
-                  <div>
-                    <h4 class="text-lg leading-tight">{post.data.title}</h4>
-                    <p class="mt-1 text-sm break-all opacity-75">
-                      kentaro1043.com{" "}
-                    </p>
-                    <p class="mt-1 text-sm opacity-75">
-                      <FormattedDate date={post.data.pubDate} />
-                    </p>
+                ) : null}
+                {!isExternal && post.data.heroImage ? (
+                  <div class="h-48 md:h-64 lg:h-72 xl:h-96">
+                    <Image
+                      width={720}
+                      height={360}
+                      src={post.data.heroImage}
+                      alt={imageAlt}
+                      class="h-full w-full rounded-xl object-cover"
+                      loading={"eager"}
+                    />
                   </div>
-                </>
-              )}
-            </a>
-          </li>
-        ))
+                ) : null}
+                <div>
+                  <h4 class="text-lg leading-tight">{title}</h4>
+                  <p class="mt-1 text-sm break-all opacity-75">{siteName}</p>
+                  <p class="mt-1 text-sm opacity-75">
+                    <FormattedDate date={post.data.pubDate} />
+                  </p>
+                </div>
+              </a>
+            </li>
+          );
+        })
       }
     </ul>
   </section>
