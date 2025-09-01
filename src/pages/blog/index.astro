@@ -4,6 +4,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 
 // 型安全な画像URL抽出関数
 function getValidImageSrc(val: unknown): string {
@@ -53,7 +54,7 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
     <h1 class="border-b-2 border-dashed border-primary pb-2 text-4xl">
       ブログ
     </h1>
-    <ul class="flex list-none flex-wrap gap-4">
+    <ul class="flex list-none flex-wrap justify-center gap-4">
       {
         posts.map((post, idx) => {
           const isExternal = !!post.data.externalUrl;
@@ -72,41 +73,58 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
               : ""
             : "kentaro1043.com";
           return (
-            <li class="w-full xl:w-[calc(50%-16px)]">
+            <li class="w-96">
               <a
                 href={isExternal ? post.data.externalUrl : `/blog/${post.id}/`}
                 class="flex flex-col gap-2 rounded-2xl border-2 border-primary p-2 transition-colors hover:opacity-60"
                 target={isExternal ? "_blank" : undefined}
                 rel={isExternal ? "noopener noreferrer" : undefined}
               >
-                {isExternal && imageSrc ? (
-                  <div class="h-48 md:h-64 lg:h-72 xl:h-96">
-                    <img
-                      width={720}
-                      height={360}
-                      src={imageSrc}
-                      alt={imageAlt}
-                      class="h-full w-full rounded-xl object-cover"
-                      loading="eager"
-                    />
-                  </div>
-                ) : null}
-                {!isExternal && post.data.heroImage ? (
-                  <div class="h-48 md:h-64 lg:h-72 xl:h-96">
-                    <Image
-                      width={720}
-                      height={360}
-                      src={post.data.heroImage}
-                      alt={imageAlt}
-                      class="h-full w-full rounded-xl object-cover"
-                      loading={"eager"}
-                    />
-                  </div>
-                ) : null}
+                <div class="flex flex-shrink-0 justify-center">
+                  {isExternal && imageSrc ? (
+                    <div class="h-36 w-64">
+                      <img
+                        width={720}
+                        height={360}
+                        src={imageSrc}
+                        alt={imageAlt}
+                        class="h-full w-full rounded-xl object-cover"
+                        loading="eager"
+                      />
+                    </div>
+                  ) : null}
+                  {!isExternal && post.data.heroImage ? (
+                    <div class="h-36 w-64">
+                      <Image
+                        width={720}
+                        height={360}
+                        src={post.data.heroImage}
+                        alt={imageAlt}
+                        class="h-full w-full rounded-xl object-cover"
+                        loading={"eager"}
+                      />
+                    </div>
+                  ) : null}
+                </div>
                 <div>
-                  <h4 class="text-lg leading-tight">{title}</h4>
-                  <p class="mt-1 text-sm break-all opacity-75">{siteName}</p>
+                  <h4 class="text-md leading-tight">{title}</h4>
                   <p class="mt-1 text-sm opacity-75">
+                    <span class="inline-flex items-center gap-2">
+                      <span class="align-middle">{siteName}</span>
+                      {isExternal ? (
+                        <span
+                          class="inline-flex items-center"
+                          aria-hidden="true"
+                        >
+                          <Icon
+                            name="fa6-solid:window-restore"
+                            class="h-3 w-3"
+                          />
+                        </span>
+                      ) : null}
+                    </span>
+                  </p>
+                  <p class="mt-1 text-xs opacity-75">
                     <FormattedDate date={post.data.pubDate} />
                   </p>
                 </div>
