@@ -30,5 +30,6 @@
   "biome.enabled": false,
   "markdownlint.config": {
     "no-inline-html": false
-  }
+  },
+  "textlint.languages": ["markdown"]
 }
