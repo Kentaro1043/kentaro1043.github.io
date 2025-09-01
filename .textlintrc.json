@@ -2,7 +2,12 @@
   "plugins": {
     "mdx": true
   },
-  "filters": {},
+  "filters": {
+    "comments": true,
+    "allowlist": {
+      "allow": []
+    }
+  },
   "rules": {
     "preset-ja-technical-writing": true
   }
