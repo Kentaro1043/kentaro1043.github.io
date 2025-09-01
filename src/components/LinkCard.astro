@@ -25,14 +25,20 @@ const domain = new URL(url).hostname.replace("www.", "");
 
 <a
   href={url}
-  class="not-prose card card-side h-24 w-full bg-base-100 shadow-md card-xs hover:opacity-70"
+  class="not-prose card card-side h-24 w-full overflow-hidden rounded-2xl border-2 border-primary bg-base-100 card-xs hover:opacity-70"
   target="_blank"
   rel="noopener noreferrer"
 >
-  <figure class="h-full w-32 flex-shrink-0 overflow-hidden">
+  <figure
+    class="flex h-full w-32 flex-shrink-0 items-center justify-center overflow-hidden"
+  >
     {
       image ? (
-        <img src={image} alt={title} class="h-full w-full object-cover" />
+        <img
+          src={image}
+          alt={title}
+          class="block max-h-full max-w-full object-contain object-center"
+        />
       ) : null
     }
   </figure>
