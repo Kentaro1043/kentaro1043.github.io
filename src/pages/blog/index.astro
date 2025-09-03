@@ -49,7 +49,10 @@ const posts = await Promise.all(
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout
+  title={"ブログ | けんたろうのサイト"}
+  description={SITE_DESCRIPTION}
+>
   <section class="flex flex-col gap-5">
     <h1 class="border-b-2 border-dashed border-primary pb-2 text-4xl">
       ブログ
