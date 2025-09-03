@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_DESCRIPTION } from "../../consts";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+import portfolioImage from "../../../public/portfolio_screenshot.webp";
+---
+
+<BaseLayout title={"作品 | けんたろうのサイト"} description={SITE_DESCRIPTION}>
+  <h1 class="border-b-2 border-dashed border-primary pb-2 text-4xl">作品</h1>
+  <section class="flex flex-col justify-center gap-4">
+    <h2 class="border-b-2 border-dashed border-secondary pb-1 text-3xl">
+      ポートフォリオ
+    </h2>
+    <div class="flex flex-col gap-1">
+      <div class="mx-auto max-w-lg">
+        <Image src={portfolioImage} alt="ポートフォリオのスクリーンショット" />
+      </div>
+      <p>このサイトです。</p>
+      <p>
+        <a
+          href="https://ja.react.dev/"
+          class="inline text-primary underline hover:text-secondary">React</a
+        >を<a
+          href="https://astro.build/"
+          class="text-primary underline hover:text-secondary">Astro</a
+        >フレームワークを通じて使用しています。
+      </p>
+      <p>
+        また、AstroのContent
+        Collections機能を使い、ブログ機能が実装されています。
+      </p>
+    </div>
+    <section class="flex flex-col gap-2">
+      <h3 class="pb-1 text-2xl">リポジトリ</h3>
+      <a
+        href="https://github.com/Kentaro1043/kentaro1043.github.io"
+        class="flex gap-1"
+        target="_blank"
+        ><span
+          ><Icon name="fa6-brands:github" width="20px" height="20px" /></span
+        ><span class="inline text-primary underline hover:text-secondary"
+          >Kentaro1043/kentaro1043.github.io</span
+        >
+      </a>
+    </section>
+    <section class="flex flex-col gap-2">
+      <h3 class="pb-1 text-2xl">技術スタック</h3>
+      <ul class="ml-6 list-disc">
+        <li>TypeScript</li>
+        <li>React</li>
+        <li>Astro</li>
+        <li>Tailwind CSS</li>
+        <li>daisyUI</li>
+        <li>GitHub Pages</li>
+        <li>GitHub Actions</li>
+      </ul>
+    </section>
+  </section>
+</BaseLayout>
