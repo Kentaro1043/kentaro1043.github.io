@@ -5,6 +5,11 @@ import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
 import portfolioImage from "../../../public/portfolio_screenshot.webp";
+import tcuImage from "../../../public/tcu2025_screenshot.webp";
+import trapavilionImage1 from "../../../public/traPavilion_picture_1.webp";
+import trapavilionImage2 from "../../../public/traPavilion_picture_2.webp";
+import trapavilionImage3 from "../../../public/traPavilion_picture_3.webp";
+import flightImage from "../../../public/flight_picture.webp";
 ---
 
 <BaseLayout title={"作品 | けんたろうのサイト"} description={SITE_DESCRIPTION}>
@@ -28,8 +33,7 @@ import portfolioImage from "../../../public/portfolio_screenshot.webp";
         >フレームワークを通じて使用しています。
       </p>
       <p>
-        また、AstroのContent
-        Collections機能を使い、ブログ機能が実装されています。
+        また、AstroのContent Collections機能を使い、ブログ機能を実装しています。
       </p>
     </div>
     <section class="flex flex-col gap-2">
@@ -55,6 +59,219 @@ import portfolioImage from "../../../public/portfolio_screenshot.webp";
         <li>daisyUI</li>
         <li>GitHub Pages</li>
         <li>GitHub Actions</li>
+      </ul>
+    </section>
+
+    <h2 class="border-b-2 border-dashed border-secondary pb-1 text-3xl">
+      インフラ
+    </h2>
+    <div class="flex flex-col gap-1">
+      <p>自分用のインフラ環境です。</p>
+      <p>
+        Oracle Cloud InfrastructureのKubernetes
+        Engineを用いて、非常に安価なk8sクラスタを構築し、NextCloudやJellyfin、n8n、Misskeyといったサーバーを動かしています。
+      </p>
+      <p>
+        TerraformとAnsible、ArgoCDを用いて可能な限りのIaCを実現し、またRenovateによる各種サーバーの自動アップデートを行っています。
+      </p>
+      <p>
+        また、データベースのバックアップ先としてGoogle Cloud
+        Storageを使用しています。
+      </p>
+    </div>
+    <section class="flex flex-col gap-2">
+      <h3 class="pb-1 text-2xl">リポジトリ</h3>
+      <a
+        href="https://github.com/Kentaro1043/manifest"
+        class="flex gap-1"
+        target="_blank"
+        ><span
+          ><Icon name="fa6-brands:github" width="20px" height="20px" /></span
+        ><span class="inline text-primary underline hover:text-secondary"
+          >Kentaro1043/manifest</span
+        >
+      </a>
+      <a
+        href="https://github.com/Kentaro1043/ansible"
+        class="flex gap-1"
+        target="_blank"
+        ><span
+          ><Icon name="fa6-brands:github" width="20px" height="20px" /></span
+        ><span class="inline text-primary underline hover:text-secondary"
+          >Kentaro1043/ansible</span
+        >
+      </a>
+      <a
+        href="https://github.com/Kentaro1043/terraform"
+        class="flex gap-1"
+        target="_blank"
+        ><span
+          ><Icon name="fa6-brands:github" width="20px" height="20px" /></span
+        ><span class="inline text-primary underline hover:text-secondary"
+          >Kentaro1043/terraform</span
+        >
+      </a>
+    </section>
+    <section class="flex flex-col gap-2">
+      <h3 class="pb-1 text-2xl">技術スタック</h3>
+      <ul class="ml-6 list-disc">
+        <li>Kubernetes</li>
+        <li>Terraform</li>
+        <li>Ansible</li>
+        <li>ArgoCD</li>
+        <li>Argo Workflows</li>
+        <li>SOPS</li>
+        <li>Renovate</li>
+      </ul>
+    </section>
+
+    <h2 class="border-b-2 border-dashed border-secondary pb-1 text-3xl">
+      TCU 2025ホームページ
+    </h2>
+    <div class="flex flex-col gap-1">
+      <div class="mx-auto max-w-lg">
+        <Image src={tcuImage} alt="TCU 2025ホームページのスクリーンショット" />
+      </div>
+      <p>Typing ChallengeCup for University 2025のWebサイトです。</p>
+      <p>フロントエンドの主な実装を行いました。</p>
+    </div>
+    <section class="flex flex-col gap-2">
+      <h3 class="pb-1 text-2xl">サイト</h3>
+      <a
+        class="flex gap-1 text-primary underline hover:text-secondary"
+        href="https://typingchallengecup.com/university/"
+        target="_blank">https://typingchallengecup.com/university/</a
+      >
+    </section>
+    <section class="flex flex-col gap-2">
+      <h3 class="pb-1 text-2xl">リポジトリ</h3>
+      <p>非公開</p>
+    </section>
+    <section class="flex flex-col gap-2">
+      <h3 class="pb-1 text-2xl">技術スタック</h3>
+      <ul class="ml-6 list-disc">
+        <li>TypeScript</li>
+        <li>React</li>
+        <li>Next.js</li>
+      </ul>
+    </section>
+
+    <h2 class="border-b-2 border-dashed border-secondary pb-1 text-3xl">
+      traPavilion Grafanaダッシュボード
+    </h2>
+    <div class="flex flex-col gap-1">
+      <div class="mx-auto max-w-lg">
+        <Image src={trapavilionImage1} alt="traPavilionでの展示の様子1" />
+      </div>
+      <div class="mx-auto max-w-lg">
+        <Image src={trapavilionImage2} alt="traPavilionでの展示の様子2" />
+      </div>
+      <div class="mx-auto max-w-lg">
+        <Image src={trapavilionImage3} alt="traPavilionでの展示の様子3" />
+      </div>
+      <p>
+        <a
+          class="inline text-primary underline hover:text-secondary"
+          href="https://trap.jp/"
+          target="_blank">東京科学大学デジタル創作同好会traP</a
+        >の10周年イベントである<a
+          href="https://trapavilion.trap.show/"
+          class="inline text-primary underline hover:text-secondary"
+          target="_blank">traPavilion</a
+        >にて展示したGrafanaダッシュボードです。
+      </p>
+      <p>
+        会場の温湿度やネットワーク速度、次のイベントまでのカウントダウン、イベントディスコードに投稿された画像などを可視化しました。
+      </p>
+      <p>
+        イベントタイムテーブル用exporterの開発と、Grafanaダッシュボードの作成を行いました。
+      </p>
+    </div>
+    <section class="flex flex-col gap-2">
+      <h3 class="pb-1 text-2xl">リポジトリ</h3>
+      <a
+        href="https://github.com/traP-jp/trapavilion-grafana"
+        class="flex gap-1"
+        target="_blank"
+        ><span
+          ><Icon name="fa6-brands:github" width="20px" height="20px" /></span
+        ><span class="inline text-primary underline hover:text-secondary"
+          >traP-jp/trapavilion-grafana</span
+        >
+      </a>
+    </section>
+    <section class="flex flex-col gap-2">
+      <h3 class="pb-1 text-2xl">技術スタック</h3>
+      <ul class="ml-6 list-disc">
+        <li>Go</li>
+        <li>Docker</li>
+        <li>Grafana</li>
+        <li>Prometheus</li>
+      </ul>
+    </section>
+
+    <h2 class="border-b-2 border-dashed border-secondary pb-1 text-3xl">
+      フライトステータスダッシュボード
+    </h2>
+    <div class="flex flex-col gap-1">
+      <div class="mx-auto max-w-lg">
+        <Image
+          src={flightImage}
+          alt="フライトステータスダッシュボードの展示の様子"
+        />
+      </div>
+      <p>
+        <a
+          class="inline text-primary underline hover:text-secondary"
+          href="https://musenken.net/"
+          target="_blank">東京科学大学無線研究部</a
+        >の<a
+          class="inline text-primary underline hover:text-secondary"
+          href="https://koudaisai.jp/"
+          target="_blank">工大祭2025</a
+        >における展示として作成したGrafanaダッシュボードです。
+      </p>
+      <p>
+        <a
+          class="inline text-primary underline hover:text-secondary"
+          href="https://ja.wikipedia.org/wiki/%E6%94%BE%E9%80%81%E5%9E%8B%E8%87%AA%E5%8B%95%E5%BE%93%E5%B1%9E%E7%9B%A3%E8%A6%96"
+          target="_blank">ADS-B</a
+        >を受信できるアンテナと<a
+          class="inline text-primary underline hover:text-secondary"
+          href="https://ja.wikipedia.org/wiki/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E7%84%A1%E7%B7%9A"
+          target="_blank">SDR</a
+        >機器を用いて、飛行中の航空機の位置情報などの情報を取得し、Grafanaで可視化しました。
+      </p>
+    </div>
+    <section class="flex flex-col gap-2">
+      <h3 class="pb-1 text-2xl">サイト</h3>
+      <a
+        href="https://adsb.musenken.net/public-dashboards/4af58003ce9549699c151d7f31e62897"
+        class="flex gap-1 text-primary underline hover:text-secondary"
+        target="_blank"
+        >https://adsb.musenken.net/public-dashboards/4af58003ce9549699c151d7f31e62897
+      </a>
+    </section>
+    <section class="flex flex-col gap-2">
+      <h3 class="pb-1 text-2xl">リポジトリ</h3>
+      <a
+        href="https://github.com/Kentaro1043/koudaisai2025-grafana"
+        class="flex gap-1"
+        target="_blank"
+        ><span
+          ><Icon name="fa6-brands:github" width="20px" height="20px" /></span
+        ><span class="inline text-primary underline hover:text-secondary"
+          >Kentaro1043/koudaisai2025-grafana</span
+        >
+      </a>
+    </section>
+    <section class="flex flex-col gap-2">
+      <h3 class="pb-1 text-2xl">技術スタック</h3>
+      <ul class="ml-6 list-disc">
+        <li>Go</li>
+        <li>Docker</li>
+        <li>Grafana</li>
+        <li>Prometheus</li>
       </ul>
     </section>
   </section>
