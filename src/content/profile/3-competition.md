@@ -12,3 +12,4 @@ title: "大会出場歴"
   - ICPC 2024 国内予選 183位
   - ICPC 2025 国内予選 175位
 - ISUCON14 学生27位
+- ICTSC2025 特別賞（Server）
